@@ -8,6 +8,8 @@ public class FireBall : MonoBehaviour
     private Vector2 spwanpoint;
     public GameObject Player;
     public PlayerMov mov;
+    private GameObject afterspwan;
+    private Rigidbody2D rb;
     // Update is called once per frame
 
     private void Start()
@@ -24,15 +26,35 @@ public class FireBall : MonoBehaviour
                 {
                     spwanpoint.x = Player.transform.position.x - 1;
                     spwanpoint.y = Player.transform.position.y;
+                    afterspwan = Instantiate(fireball, spwanpoint, Quaternion.identity);
+                    rb = afterspwan.GetComponent<Rigidbody2D>();
+                    addforceleft();
 
                 }
                 else
                 {
                     spwanpoint.x = Player.transform.position.x + 1;
                     spwanpoint.y = Player.transform.position.y;
+                    afterspwan = Instantiate(fireball, spwanpoint, Quaternion.identity);
+                    rb = afterspwan.GetComponent<Rigidbody2D>();
+                    addforceright();
                 }
-                Instantiate(fireball, spwanpoint, Quaternion.identity);
+
             }
         }
+    }
+    private void addforceright()
+    {
+        Vector2 force;
+        force.x = 10;
+        force.y = 0;
+        rb.velocity = force;   
+    }
+    private void addforceleft()
+    {
+        Vector2 force;
+        force.x = -10;
+        force.y = 0;
+        rb.velocity = force;
     }
 }
