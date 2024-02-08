@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class FireBalloperations : MonoBehaviour
 {
+    public GameObject fireball;
     // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject gameObject = collision.gameObject;
+        if(gameObject.CompareTag("enemy"))
+        {
+            Enemy en = gameObject.GetComponent<Enemy>();
+            if(en != null) {en.health -= 1;}
+            Destroy(fireball);
+        }
     }
 }

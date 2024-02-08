@@ -10,6 +10,9 @@ public class FireBall : MonoBehaviour
     public PlayerMov mov;
     private GameObject afterspwan;
     private Rigidbody2D rb;
+    public float cooldownTimerbase =1;
+    private float cooldownTime = 1;
+
     // Update is called once per frame
 
     private void Start()
@@ -18,7 +21,7 @@ public class FireBall : MonoBehaviour
     }
     void Update()
     {
-        if (fireball != null)
+        if (fireball != null && cooldownTime <= 0)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -29,6 +32,7 @@ public class FireBall : MonoBehaviour
                     afterspwan = Instantiate(fireball, spwanpoint, Quaternion.identity);
                     rb = afterspwan.GetComponent<Rigidbody2D>();
                     addforceleft();
+                    cooldownTime = cooldownTimerbase;
 
                 }
                 else
@@ -38,10 +42,12 @@ public class FireBall : MonoBehaviour
                     afterspwan = Instantiate(fireball, spwanpoint, Quaternion.identity);
                     rb = afterspwan.GetComponent<Rigidbody2D>();
                     addforceright();
+                    cooldownTime = cooldownTimerbase;
                 }
 
             }
         }
+        cooldownTime -= Time.deltaTime;
     }
     private void addforceright()
     {
