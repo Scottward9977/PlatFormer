@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements.Experimental;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 4;
+     [SerializeField] public TMP_Text HealthText;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0) {
             Destroy(gameObject);
         }
+        HealthText.text = "Health: " + health;
     }
 
 }
