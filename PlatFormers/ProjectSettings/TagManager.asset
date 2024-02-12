@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Collidable
+  - attack
+  - enemy
+>>>>>>> b5c00c41a4684fcf12f5fb5df2e7e4cf04b0b5df
   layers:
   - Default
   - TransparentFX
