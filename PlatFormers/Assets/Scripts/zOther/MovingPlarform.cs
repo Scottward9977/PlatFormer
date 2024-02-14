@@ -24,8 +24,6 @@ public class MovingPlarform : MonoBehaviour
     public float moveDistance =5;
 
 
-
-
     void Start()
     {     
         movePointDown.x = platform.transform.position.x;
