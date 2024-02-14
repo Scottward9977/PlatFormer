@@ -81,6 +81,7 @@ public class MagicMissisal : MonoBehaviour
 
 
         }
+
         cooldownTime -= Time.deltaTime;
     }
 
