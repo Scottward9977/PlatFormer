@@ -12,17 +12,18 @@ public class MagicMissisal : MonoBehaviour
     public GameObject Player;
     public PlayerMov mov;
     private GameObject afterspwan;
-    private Rigidbody2D rb;
-    public float cooldownTimerbase = 0;
+    public float cooldownTimerbase = 5;
     private float cooldownTime = 0;
     public float MoveDistance = 1;
     private Vector3 movePoint;
+    public ProgressBar progress;
     List<GameObject> missileList = new List<GameObject>();
     GameObject[] targets;
 
     private void Start()
     {
         targets = GameObject.FindGameObjectsWithTag("enemy");
+        progress.maxFill = cooldownTimerbase;
         rechecken();
     }
 
@@ -31,7 +32,9 @@ public class MagicMissisal : MonoBehaviour
 
         if (Missile != null)
         {
-            if(cooldownTime <= 0)
+            targets = GameObject.FindGameObjectsWithTag("enemy");
+            Debug.Log(targets);
+            if (cooldownTime >= cooldownTimerbase && targets != null)
             {
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -40,7 +43,7 @@ public class MagicMissisal : MonoBehaviour
                     spwanpoint.y = Player.transform.position.y + 4;
                     afterspwan = Instantiate(Missile, spwanpoint, Quaternion.identity);
                     missileList.Add(afterspwan);
-                    cooldownTime = cooldownTimerbase;
+                    cooldownTime = 0;
 
                 }
             }
@@ -82,10 +85,10 @@ public class MagicMissisal : MonoBehaviour
 
         }
 
-        cooldownTime -= Time.deltaTime;
+        cooldownTime += Time.deltaTime;
+        progress.currentFill = cooldownTime;
+
     }
-
-
     void restraget(MagicMissisalOperations op)
     {
 

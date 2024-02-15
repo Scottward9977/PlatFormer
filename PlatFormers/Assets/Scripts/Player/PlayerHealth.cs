@@ -9,7 +9,20 @@ using UnityEngine.UIElements.Experimental;
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 4;
-     [SerializeField] public TMP_Text HealthText;
+    [SerializeField] public TMP_Text HealthText;
+    List<GameObject> healthList = new List<GameObject>();
+
+
+    private void Start()
+    {
+        
+        for( int i = 1; i <= health; i++ )
+        {
+            GameObject temp = GameObject.Find("Health" + i);
+            temp.SetActive(true);
+            healthList.Add(temp);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         if (collistion.CompareTag("attack"))
         {
             health -= 1;
+            healthList[health].SetActive(false);
         }
     }
   
@@ -25,7 +39,15 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0) {
             Destroy(gameObject);
         }
-        HealthText.text = "Health: " + health;
+        if (health > 0)
+        {
+            for(int i = 0; i <= health - 1; i++)
+            {
+                healthList[i].SetActive(true);
+            }
+        }
+    
+        
     }
 
 }

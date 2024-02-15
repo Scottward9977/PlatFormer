@@ -38,6 +38,8 @@ public class MovingPlarform : MonoBehaviour
     {
         if(horizontal)
         {
+
+           
             if(movingLeft)
             {
                 Rigidbody2D rb = platform.GetComponent<Rigidbody2D>();
