@@ -1,0 +1,53 @@
+using UnityEngine;
+
+public class FigureEightAndMove : MonoBehaviour
+{
+    public float loopSpeed = 2f;
+    public float moveSpeed = 5f; 
+    public Vector2 targetPosition; 
+    private Vector2 startPosition; 
+    private bool movingToTarget = false;
+    private bool returningToStart = false; 
+    private float timeCounter = 0f;
+
+    void Start()
+    {
+        startPosition = transform.position;
+    }
+
+    void Update()
+    {
+        if (!movingToTarget && !returningToStart)
+        {
+            timeCounter += Time.deltaTime * loopSpeed;
+
+            float x = Mathf.Sin(timeCounter) * 3f;
+            float y = Mathf.Sin(timeCounter) * Mathf.Cos(timeCounter) * 2f;
+            transform.position = new Vector2(startPosition.x + x, startPosition.y + y);
+
+            //check ready to move
+            if (timeCounter >= Mathf.PI * 2) // time of one cycle
+            {
+                timeCounter = 0f;
+                movingToTarget = true;
+            }
+        }
+        else if (movingToTarget)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            if ((Vector2)transform.position == targetPosition)
+            {
+                movingToTarget = false;
+                returningToStart = true;
+            }
+        }
+        else if (returningToStart)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
+            if ((Vector2)transform.position == startPosition)
+            {
+                returningToStart = false;
+            }
+        }
+    }
+}
