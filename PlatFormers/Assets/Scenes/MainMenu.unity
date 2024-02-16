@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 174793118}
   - component: {fileID: 174793117}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -802,7 +802,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1149219863}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 631064936}
+        m_TargetAssemblyTypeName: ChangeSence, Assembly-CSharp
+        m_MethodName: swtichSence
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Controlls
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1149219863
 MonoBehaviour:
   m_ObjectHideFlags: 0
