@@ -36,7 +36,7 @@ public class MagicMissisal : MonoBehaviour
             Debug.Log(targets);
             if (cooldownTime >= cooldownTimerbase && targets != null)
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.J))
                 {
 
                     spwanpoint.x = Player.transform.position.x;

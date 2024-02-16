@@ -22,7 +22,7 @@ public class HealthRegen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C) && currentCoolDown >= 5f)
+        if(Input.GetKeyDown(KeyCode.K) && currentCoolDown >= 5f)
         {
             heal();
         }
