@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             Time.timeScale = 0;
+            endScreen.SetActive(true);
 
         }
         if (health > 0)
@@ -64,8 +65,12 @@ public class PlayerHealth : MonoBehaviour
         GameObject collistion = collision.gameObject;
         if (collistion.CompareTag("attack"))
         {
-            health -= 1;
-            healthList[health].SetActive(false);
+            if(health > 0)
+            {
+                health -= 1;
+                healthList[health].SetActive(false);
+            }
+           
         }
     }
 
