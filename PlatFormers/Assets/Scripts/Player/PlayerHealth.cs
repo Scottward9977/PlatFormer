@@ -11,17 +11,52 @@ public class PlayerHealth : MonoBehaviour
     public int health = 4;
     [SerializeField] public TMP_Text HealthText;
     List<GameObject> healthList = new List<GameObject>();
-
-
+    public GameObject pauseScreen;
+    public GameObject endScreen;
+    private bool pause = false;
     private void Start()
     {
-        
-        for( int i = 1; i <= health; i++ )
+
+        pauseScreen.SetActive(false);
+        endScreen.SetActive(false);
+
+        for (int i = 1; i <= health; i++)
         {
             GameObject temp = GameObject.Find("Health" + i);
             temp.SetActive(true);
             healthList.Add(temp);
         }
+    }
+
+    void Update()
+    {
+        if (health <= 0)
+        {
+            Time.timeScale = 0;
+
+        }
+        if (health > 0)
+        {
+            for (int i = 0; i <= health - 1; i++)
+            {
+                healthList[i].SetActive(true);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause = !pause;
+        }
+        if (pause)
+        {
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+        }
+        else if (!pause)
+        {
+            Time.timeScale = 1f;
+            pauseScreen.SetActive(false);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,22 +67,6 @@ public class PlayerHealth : MonoBehaviour
             health -= 1;
             healthList[health].SetActive(false);
         }
-    }
-  
-    private void Update()
-    {
-        if(health <= 0) {
-            Destroy(gameObject);
-        }
-        if (health > 0)
-        {
-            for(int i = 0; i <= health - 1; i++)
-            {
-                healthList[i].SetActive(true);
-            }
-        }
-    
-        
     }
 
 }
