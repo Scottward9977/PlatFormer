@@ -4,7 +4,8 @@ public class FigureEightAndMove : MonoBehaviour
 {
     public float loopSpeed = 2f;
     public float moveSpeed = 5f; 
-    public Vector2 targetPosition; 
+    public Vector2 targetPosition;
+    public Transform playerTransform;
     private Vector2 startPosition; 
     private bool movingToTarget = false;
     private bool returningToStart = false; 
@@ -30,10 +31,11 @@ public class FigureEightAndMove : MonoBehaviour
             {
                 timeCounter = 0f;
                 movingToTarget = true;
+                targetPosition = playerTransform.position;
             }
         }
         else if (movingToTarget)
-        {
+        { 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             if ((Vector2)transform.position == targetPosition)
             {
