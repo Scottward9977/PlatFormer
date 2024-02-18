@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private int curCyoteTime = 0;
 
     private bool isWallSliding;
-    private float wallSlidingSpeed = 0.01f;
+    private float wallSlidingSpeed = 0.2f;
 
     private bool isWallJumping;
     private float wallJumpingDirection;
@@ -54,11 +54,24 @@ public class PlayerController : MonoBehaviour
             canDash = true;
         }
 
+        if (IsGrounded())
+        {
+            curCyoteTime = 0;
+        }
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        }
+
+        if(curCyoteTime < cyoteTime)
+        {
+            if(Input.GetKeyDown(KeyCode.Space) && !IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0f)
@@ -78,6 +91,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+        curCyoteTime++;
     }
 
     private void FixedUpdate()
@@ -101,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalled()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.4f, wallLayer);
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
     private void WallSlide()
@@ -109,7 +123,9 @@ public class PlayerController : MonoBehaviour
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
             isWallSliding = true;
-            tf.position = new Vector2(tf.position.x, tf.position.y - wallSlidingSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            
+            //tf.position = new Vector2(tf.position.x, tf.position.y - wallSlidingSpeed);
             
         }
         else
@@ -179,5 +195,6 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
         dashCancel = false;
         yield return new WaitForSeconds(dashingCooldown);
+        curCyoteTime = 0;
     }
 }
