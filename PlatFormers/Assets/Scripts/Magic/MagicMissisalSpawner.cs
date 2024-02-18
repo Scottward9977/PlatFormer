@@ -19,6 +19,7 @@ public class MagicMissisal : MonoBehaviour
     public ProgressBar progress;
     List<GameObject> missileList = new List<GameObject>();
     GameObject[] targets;
+    [SerializeField] public Animator anima;
 
     private void Start()
     {
@@ -38,10 +39,12 @@ public class MagicMissisal : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.J))
                 {
 
+                    anima.SetInteger("anima" ,1);
                     spwanpoint.x = Player.transform.position.x;
                     spwanpoint.y = Player.transform.position.y + 4;
                     afterspwan = Instantiate(Missile, spwanpoint, Quaternion.identity);
                     missileList.Add(afterspwan);
+
                     cooldownTime = 0;
 
                 }
