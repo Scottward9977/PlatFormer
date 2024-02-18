@@ -7,9 +7,11 @@ public class PlayerController : MonoBehaviour
     private float speed = 8f;
     private float jumpingPower = 8f;
     private bool isFacingRight = true;
+    private int cyoteTime = 30;
+    private int curCyoteTime = 0;
 
     private bool isWallSliding;
-    private float wallSlidingSpeed = 2f;
+    private float wallSlidingSpeed = 0.01f;
 
     private bool isWallJumping;
     private float wallJumpingDirection;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform tf;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
@@ -98,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalled()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        return Physics2D.OverlapCircle(wallCheck.position, 0.4f, wallLayer);
     }
 
     private void WallSlide()
@@ -106,8 +109,8 @@ public class PlayerController : MonoBehaviour
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
             isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            Debug.Log(new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue)));
+            tf.position = new Vector2(tf.position.x, tf.position.y - wallSlidingSpeed);
+            
         }
         else
         {
