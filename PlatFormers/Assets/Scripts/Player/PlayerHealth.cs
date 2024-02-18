@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public TMP_Text HealthText;
     List<GameObject> healthList = new List<GameObject>();
     public GameObject pauseScreen;
+    public int killCount;
     public GameObject endScreen;
     private bool pause = false;
     private void Start()
@@ -34,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Time.timeScale = 0;
             endScreen.SetActive(true);
+            HealthText.text = "You killed " + killCount + " Enemys";
 
         }
         if (health > 0)
@@ -52,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
             Time.timeScale = 0;
             pauseScreen.SetActive(true);
         }
-        else if (!pause)
+        else if (!pause && health > 0)
         {
             Time.timeScale = 1f;
             pauseScreen.SetActive(false);
