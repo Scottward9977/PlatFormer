@@ -133,10 +133,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f39b65007344984f8f4becfa7a2da47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  jumpSpeed: 0
-  isGrounded: 0
-  movementState: 
+  rb: {fileID: 6287154353885613502}
+  groundCheck: {fileID: 1491077647923553652}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallCheck: {fileID: 303075546555552237}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!50 &6287154353885613502
 Rigidbody2D:
   serializedVersion: 4
