@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 20f;
+    private float dashingPower = 15f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
     private bool dashCancel = false;
