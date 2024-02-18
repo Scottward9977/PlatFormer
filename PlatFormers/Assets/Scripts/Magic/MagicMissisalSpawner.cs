@@ -10,7 +10,6 @@ public class MagicMissisal : MonoBehaviour
     public GameObject Missile;
     private Vector2 spwanpoint;
     public GameObject Player;
-    public PlayerMov mov;
     private GameObject afterspwan;
     public float cooldownTimerbase = 5;
     private float cooldownTime = 0;
@@ -19,7 +18,7 @@ public class MagicMissisal : MonoBehaviour
     public ProgressBar progress;
     List<GameObject> missileList = new List<GameObject>();
     GameObject[] targets;
-    [SerializeField] public Animator anima;
+    [SerializeField] public Animator ainimation;
 
     private void Start()
     {
@@ -36,16 +35,18 @@ public class MagicMissisal : MonoBehaviour
             targets = GameObject.FindGameObjectsWithTag("enemy");
             if (cooldownTime >= cooldownTimerbase && targets != null)
             {
+                Debug.Log("fuck");
                 if (Input.GetKeyDown(KeyCode.J))
                 {
 
-                    anima.SetInteger("anima" ,1);
+                    ainimation.SetInteger("anima", 1);
                     spwanpoint.x = Player.transform.position.x;
                     spwanpoint.y = Player.transform.position.y + 4;
                     afterspwan = Instantiate(Missile, spwanpoint, Quaternion.identity);
                     missileList.Add(afterspwan);
 
                     cooldownTime = 0;
+                    Invoke("SetWalking", 1);
 
                 }
             }
@@ -113,7 +114,11 @@ public class MagicMissisal : MonoBehaviour
     void rechecken()
     {
         targets = GameObject.FindGameObjectsWithTag("enemy");
-      Invoke("rechecken", 2f);
+        Invoke("rechecken", 2f);
+    }
+    void SetWalking()
+    {
+        ainimation.SetInteger("anima", 0);
     }
 }
 
