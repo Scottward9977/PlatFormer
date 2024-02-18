@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     public int killCount;
     public GameObject endScreen;
     private bool pause = false;
+    [SerializeField] public Animator ainimation;
+    
+
     private void Start()
     {
 
@@ -33,9 +37,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Time.timeScale = 0;
             endScreen.SetActive(true);
+            ainimation.SetInteger("anima", 1);
             HealthText.text = "You killed " + killCount + " Enemys";
+            Invoke("SetTime", 1);
 
         }
         if (health > 0)
@@ -74,6 +79,10 @@ public class PlayerHealth : MonoBehaviour
             }
            
         }
+    }
+    void SetTime()
+    {
+        Time.timeScale = 0;
     }
 
 }

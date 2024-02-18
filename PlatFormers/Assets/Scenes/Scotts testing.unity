@@ -4816,11 +4816,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76e939d40d687e408c73606f09833eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 1
   HealthText: {fileID: 372681240}
   pauseScreen: {fileID: 704961307}
   killCount: 0
   endScreen: {fileID: 1578307346}
+  ainimation: {fileID: 2127963866}
 --- !u!114 &2127963874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4839,7 +4840,7 @@ MonoBehaviour:
   cooldownTimerbase: 0
   MoveDistance: 50
   progress: {fileID: 2001393018}
-  anima: {fileID: 2127963866}
+  ainimation: {fileID: 2127963866}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
