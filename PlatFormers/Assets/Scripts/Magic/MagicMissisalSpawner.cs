@@ -37,7 +37,7 @@ public class MagicMissisal : MonoBehaviour
         {
             targets = GameObject.FindGameObjectsWithTag("enemy");
             // limits the number of bullets in the sence to the number of tagets in range 
-            if (cooldownTime >= cooldownTimerbase &&  missileList.Count < targets.Length)
+            if (cooldownTime >= cooldownTimerbase )
             {
         
                 if (Input.GetKeyDown(KeyCode.J))
@@ -126,10 +126,7 @@ public class MagicMissisal : MonoBehaviour
                 op.closestObj = closestEnemy;
             }
         }
-        else
-        {
-            Debug.Log("No enemies found.");
-        }
+       
     }
 
 
