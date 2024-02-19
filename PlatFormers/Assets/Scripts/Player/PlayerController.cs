@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    // CREATED BY NF
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 8f;

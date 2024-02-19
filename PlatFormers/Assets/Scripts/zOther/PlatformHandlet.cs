@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlatformHandlet : MonoBehaviour
 {
+    // CREATED BY NF
+
     [SerializeField] Transform playerFeetTransform;
     [SerializeField] BoxCollider2D boxCollider;
     float topOfBound;
