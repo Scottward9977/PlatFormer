@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FigureEightAndMove : MonoBehaviour
 {
+    // CREATED BY NF
+
     public float loopSpeed = 2f;
     public float moveSpeed = 5f; 
     public Vector2 targetPosition;

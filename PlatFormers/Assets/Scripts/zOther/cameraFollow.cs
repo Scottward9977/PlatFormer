@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour
 {
+    // CREATED BY NF
+
     public Transform target;
     public Vector3 offset;
     public float damping;
