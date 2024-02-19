@@ -28,7 +28,7 @@ public class FigureEightAndMove : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 float distance = Mathf.Abs(hit.point.y - transform.position.y);
-                Debug.Log(distance);
+                
                 if(distance < 10)
                 {
                     iSeePlayer = true;

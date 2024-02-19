@@ -9,10 +9,12 @@ public class Teleport : MonoBehaviour
     //all of the script was writen but Scott
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject trapTarget;
+
     public Teleport tel;
     public int numberTelort = 0;
     public MagicMissisal  missisal;
     public HealthRegen healthRegen;
+    public PlayerController playerController;
     // Start is called before the first frame update
 
     private void Start()
@@ -20,13 +22,16 @@ public class Teleport : MonoBehaviour
         // turns off player script 
         missisal.enabled = false;
         healthRegen.enabled = false;
+        playerController.dashenabled = false;
 
     }
     private void Update()
     {
         // turns on scripts as needed 
+        if(tel.numberTelort >= 1) playerController.dashenabled = true;
         if (tel.numberTelort >= 2) missisal.enabled = true;
         if(tel.numberTelort >= 3) healthRegen.enabled = true;
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
