@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class ChangeSence : MonoBehaviour
 {
     // Start is called before the first frame update
+    //all of the script was writen but Scott
+    // script used to change snece 
     void Start()
     {
         

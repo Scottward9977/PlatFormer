@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
+    //all of the script was writen but Scott
+    //script is the spanwer for a fire bass that acts like a bullet 
+    // this script is not in use 
     public GameObject fireball;
     private Vector2 spwanpoint;
     public GameObject Player;

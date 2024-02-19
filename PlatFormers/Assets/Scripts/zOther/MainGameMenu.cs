@@ -5,8 +5,11 @@ using UnityEditor.UI;
 
 public class MainGameMenu : MonoBehaviour
 {
+    //all of the script was writen but Scott
+    // set the up the pause menu 
     public GameObject pauseScreen;
     private bool pause = false;
+
     void Start()
     {
         pauseScreen.SetActive(false);

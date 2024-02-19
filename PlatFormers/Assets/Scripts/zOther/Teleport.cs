@@ -6,6 +6,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class Teleport : MonoBehaviour
 {
+    //all of the script was writen but Scott
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject trapTarget;
     public Teleport tel;
@@ -16,17 +17,20 @@ public class Teleport : MonoBehaviour
 
     private void Start()
     {
+        // turns off player script 
         missisal.enabled = false;
         healthRegen.enabled = false;
 
     }
     private void Update()
     {
+        // turns on scripts as needed 
         if (tel.numberTelort >= 2) missisal.enabled = true;
         if(tel.numberTelort >= 3) healthRegen.enabled = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // telipoers player on collistion 
         GameObject collistion = collision.gameObject;
         if (collistion.CompareTag("Player"))
         {

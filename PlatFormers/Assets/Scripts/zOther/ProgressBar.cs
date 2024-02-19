@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.UI;
 using UnityEngine.UI;
-
+using UnityEditor.Build.Content;
 
 public class ProgressBar : MonoBehaviour
 {
+    //all of the script was writen but Scott
     // Start is called before the first frame update
+    // building out diamic Ui Sysmetems 
     public float maxFill;
     public float currentFill;
     public Image mask;

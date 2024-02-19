@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class selfDestroy : MonoBehaviour
 {
+    //all of the script was writen but Scott
+    // destorys the enemy after a set time 
     public float timer = 3f;
     // Start is called before the first frame update
     

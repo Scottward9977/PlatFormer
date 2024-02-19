@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MagicMissisalOperations : MonoBehaviour
 {
+    //all of the script was writen but Scott
+    // class is meant for the storing and keeping track of each bullets information individualy 
     public Vector2 closenessThreshold = new Vector2(1f, 1f); 
     public GameObject closestObj;
     public bool dead = false;

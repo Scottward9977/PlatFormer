@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HealthRegen : MonoBehaviour
 {
+    //all of the script was writen but Scott 
+    // does all of the health regain 
     public int healthRegen;
     public int healthRegenMax;
     public float maxCoolDown;
@@ -13,6 +15,7 @@ public class HealthRegen : MonoBehaviour
     [SerializeField] PlayerHealth healthscript;
     void Start()
     {
+        // interactas witht the health bar and the cool down UI
         healthRegenMax = healthscript.health;
         progressBar.currentFill = currentCoolDown;
         progressBar.maxFill = maxCoolDown;

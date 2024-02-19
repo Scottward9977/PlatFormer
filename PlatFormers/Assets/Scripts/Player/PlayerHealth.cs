@@ -9,6 +9,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class PlayerHealth : MonoBehaviour
 {
+    //all of the script was writen but Scott
     public int health = 4;
     [SerializeField] public TMP_Text HealthText;
     public GameObject pauseScreen;

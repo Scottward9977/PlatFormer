@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MovingPlarform : MonoBehaviour
 {
+    //all of the script was writen but Scott
+    // sets up the moving scripts and makes the block move from a set y to y or x to x 
     // Start is called before the first frame update
     public bool veritcal;
     public bool horizontal;

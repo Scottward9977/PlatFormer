@@ -7,6 +7,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MagicMissisal : MonoBehaviour
 {
+    //all of the script was writen but Scott
+    // scritp hands the operation of chossing the bullets and moves them towards there target 
     public GameObject Missile;
     private Vector2 spwanpoint;
     public GameObject Player;
@@ -22,6 +24,7 @@ public class MagicMissisal : MonoBehaviour
 
     private void Start()
     {
+        
         targets = GameObject.FindGameObjectsWithTag("enemy");
         progress.maxFill = cooldownTimerbase;
         rechecken();
@@ -33,12 +36,13 @@ public class MagicMissisal : MonoBehaviour
         if (Missile != null)
         {
             targets = GameObject.FindGameObjectsWithTag("enemy");
+            // limits the number of bullets in the sence to the number of tagets in range 
             if (cooldownTime >= cooldownTimerbase &&  missileList.Count < targets.Length)
             {
         
                 if (Input.GetKeyDown(KeyCode.J))
                 {
-
+                    //spawns the enemy on key press and added it to the list  
                     ainimation.SetInteger("anima", 1);
                     spwanpoint.x = Player.transform.position.x;
                     spwanpoint.y = Player.transform.position.y + 4;
@@ -72,6 +76,7 @@ public class MagicMissisal : MonoBehaviour
                     GameObject enemy = op.closestObj;
                     if (enemy != null)
                     {
+                        // moves the bullet towards the target enamy 
                         movePoint = enemy.transform.position;
                         Rigidbody2D rb = missileList[g].GetComponent<Rigidbody2D>();
                         if (rb != null)
@@ -94,6 +99,7 @@ public class MagicMissisal : MonoBehaviour
     void restraget(MagicMissisalOperations op)
     {
         
+        // determans the closest target to the bullet and then sets it as the destnation target 
         targets = GameObject.FindGameObjectsWithTag("enemy");
 
         
@@ -134,6 +140,7 @@ public class MagicMissisal : MonoBehaviour
     }
     void SetWalking()
     {
+        
         ainimation.SetInteger("anima", 0);
     }
 }
