@@ -11,6 +11,7 @@ public class FigureEightAndMove : MonoBehaviour
     private bool returningToStart = false; 
     private float timeCounter = 0f;
 
+
     void Start()
     {
         startPosition = transform.position;
@@ -18,6 +19,17 @@ public class FigureEightAndMove : MonoBehaviour
 
     void Update()
     {
+        Vector2 directionToPlayer = -Vector3.Normalize(playerTransform.position - transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, 100f);
+        Debug.DrawLine(transform.position, playerTransform.position);
+        if (hit.collider != null)
+        {
+            //if (hit.collider.CompareTag("Player"))
+            //{
+                float distance = Mathf.Abs(hit.point.y - transform.position.y);
+                Debug.Log("RAYCAST DIST: " + distance);
+           // }
+        }
         if (!movingToTarget && !returningToStart)
         {
             timeCounter += Time.deltaTime * loopSpeed;
@@ -29,6 +41,7 @@ public class FigureEightAndMove : MonoBehaviour
             //check ready to move
             if (timeCounter >= Mathf.PI * 2) // time of one cycle
             {
+
                 timeCounter = 0f;
                 movingToTarget = true;
                 targetPosition = playerTransform.position;
