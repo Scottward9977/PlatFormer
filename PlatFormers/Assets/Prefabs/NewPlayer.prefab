@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 6287154353885613502}
   - component: {fileID: 5686109864404683303}
   - component: {fileID: 5266837602569453188}
-  - component: {fileID: 4671761003080634575}
-  - component: {fileID: 6477952334585209113}
+  - component: {fileID: 5485240903207982331}
+  - component: {fileID: 7444960927025849726}
   - component: {fileID: 8470405884270406032}
   m_Layer: 0
   m_Name: NewPlayer
@@ -237,7 +237,7 @@ MonoBehaviour:
   MoveDistance: 200
   progress: {fileID: 0}
   ainimation: {fileID: 0}
---- !u!114 &4671761003080634575
+--- !u!114 &5485240903207982331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,7 +255,7 @@ MonoBehaviour:
   currentCoolDown: 0.24
   progressBar: {fileID: 0}
   healthscript: {fileID: 0}
---- !u!114 &6477952334585209113
+--- !u!114 &7444960927025849726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

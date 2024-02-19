@@ -35,7 +35,7 @@ public class MagicMissisal : MonoBehaviour
             targets = GameObject.FindGameObjectsWithTag("enemy");
             if (cooldownTime >= cooldownTimerbase && targets != null)
             {
-                Debug.Log("fuck");
+        
                 if (Input.GetKeyDown(KeyCode.J))
                 {
 

@@ -11,11 +11,11 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health = 4;
     [SerializeField] public TMP_Text HealthText;
-    List<GameObject> healthList = new List<GameObject>();
     public GameObject pauseScreen;
     public int killCount;
     public GameObject endScreen;
     private bool pause = false;
+    public ProgressBar progressBar;
     [SerializeField] public Animator ainimation;
     
 
@@ -25,16 +25,11 @@ public class PlayerHealth : MonoBehaviour
         pauseScreen.SetActive(false);
         endScreen.SetActive(false);
 
-        for (int i = 1; i <= health; i++)
-        {
-            GameObject temp = GameObject.Find("Health" + i);
-            temp.SetActive(true);
-            healthList.Add(temp);
-        }
     }
 
     void Update()
     {
+        progressBar.currentFill = health;
         if (health <= 0)
         {
             endScreen.SetActive(true);
@@ -42,13 +37,6 @@ public class PlayerHealth : MonoBehaviour
             HealthText.text = "You killed " + killCount + " Enemys";
             Invoke("SetTime", 1);
 
-        }
-        if (health > 0)
-        {
-            for (int i = 0; i <= health - 1; i++)
-            {
-                healthList[i].SetActive(true);
-            }
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -75,7 +63,9 @@ public class PlayerHealth : MonoBehaviour
             if(health > 0)
             {
                 health -= 1;
-                healthList[health].SetActive(false);
+
+
+
             }
            
         }

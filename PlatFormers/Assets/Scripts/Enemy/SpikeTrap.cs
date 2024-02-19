@@ -14,7 +14,6 @@ public class SpikeTrap : MonoBehaviour
         GameObject collistion = collision.gameObject;
         if (collistion.CompareTag("Player"))
         {
-            Debug.Log("daddy");
             PlayerHealth health =  player.GetComponent<PlayerHealth>();
             health.health -= 1;
             player.transform.position = trapTarget.transform.position;
