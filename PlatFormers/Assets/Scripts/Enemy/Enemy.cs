@@ -14,8 +14,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <=0)
+        if (health <= 0)
         {
+            GameObject[] player = GameObject.FindGameObjectsWithTag("Player"); 
+            PlayerHealth heatlh = player[0].GetComponent<PlayerHealth>();
+            heatlh.killCount += 1;
             Destroy(gameObject);
         }
     }

@@ -93,39 +93,39 @@ public class MagicMissisal : MonoBehaviour
     }
     void restraget(MagicMissisalOperations op)
     {
-
-        float detectionRadius = 100000.0f; 
+        
+        targets = GameObject.FindGameObjectsWithTag("enemy");
 
         
-        Vector2 missilePosition = op.transform.position;
-
-        
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(missilePosition, detectionRadius);
-        GameObject closestEnemy = null;
-        float closestDistance = Mathf.Infinity;
-
-        foreach (var hitCollider in hitColliders)
+        if (targets.Length > 0)
         {
-            if (hitCollider.gameObject.CompareTag("enemy"))
+            GameObject closestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+            Vector2 missilePosition = op.transform.position;
+
+ 
+            foreach (GameObject target in targets)
             {
-                float distance = Vector2.Distance(missilePosition, hitCollider.transform.position);
+                float distance = Vector2.Distance(missilePosition, target.transform.position);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    closestEnemy = hitCollider.gameObject;
+                    closestEnemy = target;
                 }
             }
-        }
 
-        if (closestEnemy != null)
-        {
-            op.closestObj = closestEnemy;
+          
+            if (closestEnemy != null)
+            {
+                op.closestObj = closestEnemy;
+            }
         }
         else
         {
-            Debug.Log("No enemies found within detection radius.");
+            Debug.Log("No enemies found.");
         }
     }
+
 
     void rechecken()
     {

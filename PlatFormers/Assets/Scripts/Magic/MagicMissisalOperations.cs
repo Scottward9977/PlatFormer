@@ -5,18 +5,38 @@ using UnityEngine;
 
 public class MagicMissisalOperations : MonoBehaviour
 {
-    public Vector2 clossest = new Vector2(200f, 200f);
+    public Vector2 closenessThreshold = new Vector2(1f, 1f); 
     public GameObject closestObj;
     public bool dead = false;
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void Update()
     {
-        GameObject collgameObject = collision.gameObject;
-        if (collgameObject.CompareTag("enemy"))
+       
+        if (closestObj != null)
         {
-            Enemy en = collgameObject.GetComponent<Enemy>();
-            if (en != null) { en.health -= 1; }
-            dead = true;
             
+            float distance = Vector2.Distance(transform.position, closestObj.transform.position);
+
+            
+            if (distance <= closenessThreshold.x || distance <= closenessThreshold.y)
+            {
+                
+                Enemy en = closestObj.GetComponent<Enemy>();
+
+                
+                if (en != null)
+                {
+                    en.health -= 1; 
+                }
+
+               if(en.health <= 0) { dead = true; }
+                
+            }
         }
+
     }
+
+    
+            
 }
