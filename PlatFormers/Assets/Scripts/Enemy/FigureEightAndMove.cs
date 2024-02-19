@@ -10,6 +10,7 @@ public class FigureEightAndMove : MonoBehaviour
     private bool movingToTarget = false;
     private bool returningToStart = false; 
     private float timeCounter = 0f;
+    private bool iSeePlayer = false;
 
 
     void Start()
@@ -19,16 +20,24 @@ public class FigureEightAndMove : MonoBehaviour
 
     void Update()
     {
-        Vector2 directionToPlayer = -Vector3.Normalize(playerTransform.position - transform.position);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, 100f);
+        Vector2 directionToPlayer = Vector3.Normalize(playerTransform.position - transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer);
         Debug.DrawLine(transform.position, playerTransform.position);
         if (hit.collider != null)
         {
-            //if (hit.collider.CompareTag("Player"))
-            //{
+            if (hit.collider.CompareTag("Player"))
+            {
                 float distance = Mathf.Abs(hit.point.y - transform.position.y);
-                Debug.Log("RAYCAST DIST: " + distance);
-           // }
+                Debug.Log(distance);
+                if(distance < 10)
+                {
+                    iSeePlayer = true;
+                }
+
+            } else
+            {
+                iSeePlayer = false;
+            }
         }
         if (!movingToTarget && !returningToStart)
         {
@@ -41,10 +50,12 @@ public class FigureEightAndMove : MonoBehaviour
             //check ready to move
             if (timeCounter >= Mathf.PI * 2) // time of one cycle
             {
-
-                timeCounter = 0f;
-                movingToTarget = true;
-                targetPosition = playerTransform.position;
+                if(iSeePlayer == true)
+                {
+                    timeCounter = 0f;
+                    movingToTarget = true;
+                    targetPosition = playerTransform.position;
+                }
             }
         }
         else if (movingToTarget)
