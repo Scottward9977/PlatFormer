@@ -33,7 +33,7 @@ public class MagicMissisal : MonoBehaviour
         if (Missile != null)
         {
             targets = GameObject.FindGameObjectsWithTag("enemy");
-            if (cooldownTime >= cooldownTimerbase && targets != null)
+            if (cooldownTime >= cooldownTimerbase &&  missileList.Count < targets.Length)
             {
         
                 if (Input.GetKeyDown(KeyCode.J))
@@ -59,7 +59,6 @@ public class MagicMissisal : MonoBehaviour
 
                 if (op.closestObj == null)
                 {
-                    Debug.Log("Target Set called");
                     restraget(op);
                 }
                 if (op.dead)
@@ -95,22 +94,39 @@ public class MagicMissisal : MonoBehaviour
     void restraget(MagicMissisalOperations op)
     {
 
+        float detectionRadius = 100000.0f; 
 
-        if (targets.Length > 0)
+        
+        Vector2 missilePosition = op.transform.position;
+
+        
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(missilePosition, detectionRadius);
+        GameObject closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var hitCollider in hitColliders)
         {
-            int randomIndex = Random.Range(0, targets.Length);
+            if (hitCollider.gameObject.CompareTag("enemy"))
+            {
+                float distance = Vector2.Distance(missilePosition, hitCollider.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = hitCollider.gameObject;
+                }
+            }
+        }
 
-
-            GameObject randomEnemy = targets[randomIndex];
-
-
-            op.closestObj = randomEnemy;
+        if (closestEnemy != null)
+        {
+            op.closestObj = closestEnemy;
         }
         else
         {
-            Debug.Log("No enemies found.");
+            Debug.Log("No enemies found within detection radius.");
         }
     }
+
     void rechecken()
     {
         targets = GameObject.FindGameObjectsWithTag("enemy");
