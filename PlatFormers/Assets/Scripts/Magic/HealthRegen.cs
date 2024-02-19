@@ -22,6 +22,7 @@ public class HealthRegen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Time.timeScale = 1f;
         if(Input.GetKeyDown(KeyCode.K) && currentCoolDown >= 5f)
         {
             heal();
