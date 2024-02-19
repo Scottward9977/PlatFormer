@@ -21,11 +21,17 @@ public class PlayerController : MonoBehaviour
     private Vector2 wallJumpingPower = new Vector2(4f, 8f);
 
     private bool canDash = true;
+    public bool dashenabled = false;
     private bool isDashing;
     private float dashingPower = 15f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
     private bool dashCancel = false;
+
+    // added by scott for UI interactions 
+    public ProgressBar progressbar;
+    private int max = 1;
+    private int current = 0;
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -36,6 +42,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] public Animator anima;
 
+    void Start () 
+    {
+        // added by scott for UI options 
+        progressbar.maxFill = max;
+        progressbar.currentFill = current;
+    }
     private void Update()
     {
 
@@ -52,6 +64,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded() || isWallSliding)
         {
             canDash = true;
+            current = 1;
         }
 
         if (IsGrounded())
@@ -87,7 +100,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        if (Input.GetKeyDown(KeyCode.L) && canDash && !isWallJumping)
+        if (Input.GetKeyDown(KeyCode.L) && canDash && dashenabled && !isWallJumping)
         {
             StartCoroutine(Dash());
         }
@@ -165,6 +178,9 @@ public class PlayerController : MonoBehaviour
 
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
+        // add by scott for UI 
+        if(!dashenabled) { current = 0; }
+        progressbar.currentFill = current;
     }
 
     private void StopWallJumping()
@@ -187,6 +203,7 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        current = 0;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
